@@ -1,0 +1,12 @@
+1) docker ps 
+2) docker exec -it _containerID_ bash
+3) redis-cli 
+
+
+PUBSUB ->Redis Pub/Sub is used to send real-time messages to active subscribers without storing them.
+
+
+TEST : OPEN 2 CLIs -- 
+1) SUBSCRIBE notifications 
+2) publish notifications heyy
+3) notification appears in another CLI 
