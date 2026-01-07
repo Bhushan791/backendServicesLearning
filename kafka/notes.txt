@@ -1,0 +1,26 @@
+throughput of DBs is very low 
+throughput--> number of operations per given period (OPS)
+
+
+throughput of kafka is very high  
+but kafka dosent have storage 
+while,
+Db has large storage 
+
+
+
+
+##case Study for UBER 
+
+>> The various uber vehicles are generating the data per sec (every sec millions) 
+
+>> now kafka process/stores it easily (becuase of its high throughput) and now kafka can send the data to **consumers**..
+
+WHO are consumers.. --> the other seperate services who rely on same data to function.
+suppose the driver data (speed, location, stops, pauses) all are needed for following seperate works
+1) FARE calculation
+2) Analysis of ride 
+3) Customers getting informations  etc.. 
+
+
+now the whole bulk insert will happen (may it can take a bit more time but it is definitly faster than inserting everysec which can potentially crash the DB)
