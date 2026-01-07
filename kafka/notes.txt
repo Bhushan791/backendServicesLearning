@@ -24,3 +24,58 @@ suppose the driver data (speed, location, stops, pauses) all are needed for foll
 
 
 now the whole bulk insert will happen (may it can take a bit more time but it is definitly faster than inserting everysec which can potentially crash the DB)
+
+
+
+
+kafka Topics, partitions and consumers
+
+topic = whole kafka enviromenet 
+partition = partitions for the better speed 
+consumers = the cnsumers(services) who reply on these partitions
+RULE1 : one consumer can hav multiple partitions but one partition cannot have multiple consumers 
+
+
+Rule 2 :
+>  if 1 P and 1 C they locate auto matically 
+> if 4 P and 1 C all 4P will be assigned to 1C
+>  if 4P and 2c then 2-2 ratio (self balancing)
+> if 4 p and 3c then one of them randomly will get 2 p
+>> if 4p and 5 c then one will be ideal and it will not get any p 
+
+if the group of the new consumer is diff then it will consume all 
+
+//KAFKA IS Queueing as well as PUB/SUB model (can be both)
+
+
+consumer group = grup of consumers uses the partitions
+
+
+//NOTE
+zookeeper handles all the partition-consumer allocation internally 
+
+
+
+
+
+//START GUIDE 
+
+start :
+start docker first
+docker run -p 2181:2181 zookeeper   //initial cmd1
+
+cmd2:  <ipaddress can be diff depending on network> 
+This command runs a Kafka container connected to Zookeeper, exposes it on port 9092, and configures basic settings for local testing.
+>>
+docker run -p 9092:9092 -e KAFKA_ZOOKEEPER_CONNECT=192.168.1.69:2181 -e KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://192.168.1.69:9092 -e KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=1 confluentinc/cp-kafka
+
+
+[t-Counts: 5]
+//file run :
+1) terminal --> consumer.js user-1  ..for north 
+2) terminal --> consumer.js user-1  ..for south 
+2) terminal --> producer.js ..to produce data
+total topic partition = 2(north and south) auto allocation 
+
+
+//to run docker and zookeeper in bg use .YAML file (make sure versionings match the envs)
