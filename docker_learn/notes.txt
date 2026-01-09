@@ -51,3 +51,36 @@ shoudshow something like <root@id>
 ### dockerfile vs yaml file
 
 Dockerfile = build an image; YAML (Compose) = orchestrate/run multiple containers.
+
+
+##PUBLISH IMAGE --> 
+steps
+- need account of hub.docker.com  >create repo 
+- come to the project, do this now username matters copyfrom there
+ cmd >> docker build -t bhushan121222222222/learn-nodejs .
+- now you have putted local build of docker to docker hub one (just like git remote add and commit) 
+
+- login to docker [command: >> docker login >>[no id pass needed if continued from google]] 
+
+-now to push actually 
+cmd >> docker push bhushan121222222222/learn-nodejs
+
+
+
+
+
+
+
+#### DOCKER compose [multiple containers SETUP, CREATE, DESTROY]
+in real world we need to run multiple containers simultaneously like 
+seperate for (postgres, redis, mailhog, kafka )all with diff PORTS in a single project so  we need a file to write pipeline forthis.
+
+
+now make a [docker-compose.yaml] file write pipeline and configuration there and run by this cmd :
+>> docker compose up
+
+[now we can see in docker desktop one stack having 2 containers running]
+
+cmd >> docker compose down [removes whatevr the UP command made]
+
+cmd : docker compose up -d [detached mode run in bg no need of active terminal and can also use DOWN cmd to stop/remove]
