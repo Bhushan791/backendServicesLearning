@@ -1,0 +1,53 @@
+CMDS 
+
+1) >> docker run -it ubuntu 
+
+desc: make a new image conatiner having OS linux-ubuntu (we got whole new os like )
+
+
+2) 
+to - restart any existing containers 
+>> docker ps -a
+>> docker start -i containerID/imagename
+it shows the container id andthen activtes it
+ 
+3) docker exec  <container_name> <cmd>
+
+
+##port mapping 
+Port mapping = exposing a container’s internal port to your host machine so you can access it.
+cmd: 
+
+example :
+>docker run -it piyushgargdev/mynodeapp
+above cmd will run in 800 but not  in our machine only inside  that container  so we cannot  actually access it.. so we use port:port 
+
+4)>> docker run it -p port:port name-of-container
+where left port is host port and right port is container port 
+
+
+
+
+5) BUILD the docker file 
+>> docker build -t learn-nodejs . 
+< -t is tag> and [. is path ]
+
+
+6)  to run the container again we use the command no.4
+
+
+7) to enter inside that container we use  
+
+>> docker exec -it <containerID(initial letters aslo okay)> bash 
+
+shoudshow something like <root@id> 
+
+8) setting enviroments / override details 
+
+>>  docker run -it -e PORT=4000 -p 4000:4000 <image-name> 
+
+
+
+### dockerfile vs yaml file
+
+Dockerfile = build an image; YAML (Compose) = orchestrate/run multiple containers.
